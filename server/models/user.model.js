@@ -60,6 +60,10 @@ userSchema.methods = {
                 expiresIn: process.env.JWT_EXPIRY,
             }
         )
+    },
+
+    comparePassword: async function(plainTextPassword) {
+        return await bycrypt.compare(plainTextPassword, this.password)
     }
 }
 
