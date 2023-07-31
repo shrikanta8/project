@@ -81,7 +81,7 @@ const register = async (req, res, next) => {
     })
 }
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
     try {
         const { email, password } = req.body
 
@@ -120,6 +120,8 @@ const logout = (req, res) => {
         maxAge: 0,
         httpOnly: true
     })
+
+    // res.clearCookie('token');
 
     res.status(200).json({
         success: true,
@@ -180,8 +182,6 @@ const forgotPassword = async (req, res, next) => {
         
         return next(new AppError(e.message, 500))    
     }
-    
-
 }
 
 const resetPassword = () => {
